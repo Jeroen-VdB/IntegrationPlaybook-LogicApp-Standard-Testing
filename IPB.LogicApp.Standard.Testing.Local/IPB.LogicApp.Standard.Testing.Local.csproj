@@ -13,8 +13,8 @@
 
 		</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageProjectUrl>https://github.com/michaelstephensonuk/IntegrationPlaybook-LogicApp-Standard-Testing</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/michaelstephensonuk/IntegrationPlaybook-LogicApp-Standard-Testing</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/Jeroen-VdB/IntegrationPlaybook-LogicApp-Standard-Testing</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Jeroen-VdB/IntegrationPlaybook-LogicApp-Standard-Testing</RepositoryUrl>
 		<Copyright>Integration-Playbook.io</Copyright>
 		<Authors>Michael Stephenson;Jeroen Van den Broeck</Authors>
 		<PackageLicenseFile>License.md</PackageLicenseFile>

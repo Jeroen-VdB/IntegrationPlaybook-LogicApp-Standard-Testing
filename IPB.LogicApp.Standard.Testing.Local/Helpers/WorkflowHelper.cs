@@ -49,7 +49,7 @@ namespace IPB.LogicApp.Standard.Testing.Local.Helpers
         /// <param name="content"></param>
         /// <param name="triggerName"></param>
         /// <returns></returns>
-        public WorkFlowResponse TriggerLogicAppWithPost(StringContent content, string triggerName = "manual")
+        public WorkFlowResponse TriggerLogicAppWithPost(HttpContent content, string triggerName = "manual")
         {
             var url = GetCallBackUrl(triggerName);
 

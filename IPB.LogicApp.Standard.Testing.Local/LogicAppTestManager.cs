@@ -39,7 +39,7 @@ namespace IPB.LogicApp.Standard.Testing.Local
         /// <param name="content"></param>
         /// <param name="triggerName"></param>
         /// <returns></returns>
-        public WorkFlowResponse TriggerLogicAppWithPost(StringContent content, string triggerName = "manual")
+        public WorkFlowResponse TriggerLogicAppWithPost(HttpContent content, string triggerName = "manual")
         {
             _workflowResponse = _workflowHelper.TriggerLogicAppWithPost(content, triggerName);
             return _workflowResponse;
