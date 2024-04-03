@@ -20,6 +20,9 @@
 		<PackageLicenseFile>License.md</PackageLicenseFile>
 		<PackageId>$(AssemblyName).ForkWithDotNetCodeSupport</PackageId>
 		<Title>IPB.LogicApp.Standard.Testing.Local Fork with .NET code support</Title>
+		<AssemblyVersion>1.0.2.0</AssemblyVersion>
+    	<FileVersion>$(AssemblyVersion)</FileVersion>
+    	<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 
   <ItemGroup>
