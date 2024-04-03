@@ -20,6 +20,8 @@ namespace IPB.LogicApp.Standard.Testing.Local.Host
         /// so it doesnt give you big verbose test results
         /// </summary>
         public bool WriteFuncOutputToDebugTrace { get; set; }
+        public bool UseArtifacts { get; set; }
+        public bool UseDotNetFunctions { get; set; }
 
         public string LogicAppFolder { get; set; }
         public string AppSettingsPath { get; set; }
@@ -100,7 +102,9 @@ namespace IPB.LogicApp.Standard.Testing.Local.Host
                 localSettings: AppSettingsJson,
                 connectionDetails: ConnectionsJson,
                 parameters: ParametersJson,
-                host: HostJson,                
+                host: HostJson,
+                artifactsDirectory: UseArtifacts ? new DirectoryInfo(Path.Combine(LogicAppFolder, "Artifacts")) : null,
+                libDirectory: UseDotNetFunctions ? new DirectoryInfo(Path.Combine(LogicAppFolder, "lib")) : null,
                 writeFuncOutputToDebugTrace: WriteFuncOutputToDebugTrace
                 );
 

@@ -52,7 +52,7 @@ namespace IPB.LogicApp.Standard.Testing.Local.Host
         /// <summary>
         /// Initializes a new instance of the <see cref="WorkflowTestHost"/> class.
         /// </summary>
-        public WorkflowTestHost(WorkflowTestInput[] inputs = null, string localSettings = null, string parameters = null, string connectionDetails = null, string host = null, DirectoryInfo artifactsDirectory = null, bool writeFuncOutputToDebugTrace = false)
+        public WorkflowTestHost(WorkflowTestInput[] inputs = null, string localSettings = null, string parameters = null, string connectionDetails = null, string host = null, DirectoryInfo artifactsDirectory = null, DirectoryInfo libDirectory = null, bool writeFuncOutputToDebugTrace = false)
         {
             var baseTestDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Temp-LogicApp-Tests");
             if (Directory.Exists(baseTestDirectory) == false)
@@ -66,13 +66,13 @@ namespace IPB.LogicApp.Standard.Testing.Local.Host
             _traceListener = new TextWriterTraceListener($"{WorkingDirectory}\\func.log.txt");
             WriteFuncOutputToDebugTrace = writeFuncOutputToDebugTrace;
 
-            StartFunctionRuntime(inputs, localSettings, parameters, connectionDetails, host, artifactsDirectory);
+            StartFunctionRuntime(inputs, localSettings, parameters, connectionDetails, host, artifactsDirectory, libDirectory);
         }
 
         /// <summary>
         /// Starts the function runtime.
         /// </summary>
-        protected void StartFunctionRuntime(WorkflowTestInput[] inputs, string localSettings, string parameters, string connectionDetails, string host, DirectoryInfo artifactsDirectory)
+        protected void StartFunctionRuntime(WorkflowTestInput[] inputs, string localSettings, string parameters, string connectionDetails, string host, DirectoryInfo artifactsDirectory, DirectoryInfo libDirectory)
         {
             try
             {
@@ -106,6 +106,18 @@ namespace IPB.LogicApp.Standard.Testing.Local.Host
                     var artifactsWorkingDirectory = Path.Combine(WorkingDirectory, "Artifacts");
                     Directory.CreateDirectory(artifactsWorkingDirectory);
                     CopyDirectory(source: artifactsDirectory, destination: new DirectoryInfo(artifactsWorkingDirectory));
+                }
+                
+                if (libDirectory != null)
+                {
+                    if (!libDirectory.Exists)
+                    {
+                        throw new DirectoryNotFoundException(libDirectory.FullName);
+                    }
+
+                    var libWorkingDirectory = Path.Combine(WorkingDirectory, "lib");
+                    Directory.CreateDirectory(libWorkingDirectory);
+                    CopyDirectory(source: libDirectory, destination: new DirectoryInfo(libWorkingDirectory));
                 }
 
                 if (!string.IsNullOrEmpty(parameters))
