@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IPB.LogicApp.Standard.Testing.Local.Host
 {
-    public class FuncHelper
+	public class FuncHelper
     {
 
         public static string GetFuncPath()
@@ -21,9 +17,15 @@ namespace IPB.LogicApp.Standard.Testing.Local.Host
                 if (File.Exists(funcPath))
                     return funcPath;
                 else
-                {
-                    throw new Exception("The func.exe does not exist at the expected paths");
-                }
+				{
+					funcPath = GetFuncPathOnBuildAgentWithFuncCoreToolInstaller();
+					if (File.Exists(funcPath))
+						return funcPath;
+					else
+					{
+						throw new Exception("The func.exe does not exist at the expected paths");
+					}
+				}
             }
         }
 
@@ -38,6 +40,12 @@ namespace IPB.LogicApp.Standard.Testing.Local.Host
         public static string GetFuncPathOnBuildAgent()
         {
             return "C:\\npm\\prefix\\node_modules\\azure-functions-core-tools\\bin\\func.exe";
-        }
-    }
+		}
+
+		///When using Azure DevOps Pipeline FuncToolsInstaller@0
+		public static string GetFuncPathOnBuildAgentWithFuncCoreToolInstaller()
+		{
+			return $"C:\\hostedtoolcache\\windows\\func\\{Environment.GetEnvironmentVariable("AZURE_FUNCTIONS_CORE_TOOLS_VERSION")}\\x64\\func.exe";
+		}
+	}
 }
